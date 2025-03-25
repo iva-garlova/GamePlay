@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import gameServise from "../../services/gameServise";
 import { Link } from "react-router";
+import CommentsShow from "../comments-show/CommentsShow";
+import CommentsCreate from "../comments-add/CommentsCreate";
 
 export default function GamesDetails() {
     
@@ -44,22 +46,7 @@ export default function GamesDetails() {
             <p className="text">
                 {game.summary}
             </p>
-
-            {/* <!-- Bonus ( for Guests and Users ) --> */}
-            <div className="details-comments">
-                <h2>Comments:</h2>
-                <ul>
-                    {/* <!-- list all comments for current game (If any) --> */}
-                    <li className="comment">
-                        <p>Content: I rate this one quite highly.</p>
-                    </li>
-                    <li className="comment">
-                        <p>Content: The best game.</p>
-                    </li>
-                </ul>
-                {/* <!-- Display paragraph: If there are no games in the database --> */}
-                <p className="no-comment">No comments.</p>
-            </div>
+            <CommentsShow/>
 
             {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
             <div className="buttons">
@@ -72,17 +59,7 @@ export default function GamesDetails() {
                 </button>
             </div>
         </div>
-
-        {/* <!-- Bonus --> */}
-        {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-        <article className="create-comment">
-            <label>Add new comment:</label>
-            <form className="form">
-                <textarea name="comment" placeholder="Comment......"></textarea>
-                <input className="btn submit" type="submit" value="Add Comment"/>
-            </form>
-        </article>
-
+        <CommentsCreate/>
     </section>
     );
 }

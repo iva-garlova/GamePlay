@@ -17,6 +17,9 @@ export default {
    create(gameData) {
         return request.post(baseUrl, gameData);
 },
+edit(gameId, gameData){
+  return request.put(`${baseUrl}/${gameId}`, {...gameData, _id: gameId})
+},
 delete(gameId){
 return request.delete(`${baseUrl}/${gameId}`);
 },

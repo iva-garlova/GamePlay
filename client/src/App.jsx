@@ -13,6 +13,7 @@ import GameEdit from './components/game-edit/GameEdit'
 import GamesDetails from './components/game-details/GamesDetails'
 import Games from './components/games/Games'
 import { useState } from 'react'
+import Logout from './components/logout/Logout'
 
 function App() {
   const [authData, setAuthData] = useState({});
@@ -30,12 +31,13 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route path ="/" element={<Home />}/>
-          <Route path ="/login" element={<Login/>}/>
+          <Route path ="/login" element={<Login />}/>
           <Route path ="/register" element={<Register />}/>
           <Route path ="/games/create" element={<CreateGame />}/>
           <Route path ="/games/:gameId/edit" element={<GameEdit />}/>
           <Route path ="/games/:gameId/details" element={<GamesDetails/>}/>
           <Route path ="/games" element={<Games />}/>
+          <Route path ="/logout" element={<Logout />}/>
         </Routes>
         </main>
     </div>

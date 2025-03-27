@@ -12,12 +12,10 @@ import Games from './components/games/Games'
 import { useState } from 'react'
 
 function App() {
-  const [email, setEmail] = useState('');
+  const [authData, setAuthData] = useState({});
 
-  const userLoginHandler = (authData) => {
-    console.log(authData);
-    
-    setEmail(authData.email);
+  const userLoginHandler = (resultData) => {
+      setAuthData(resultData)
   }
 
 
@@ -32,7 +30,7 @@ function App() {
           <Route path ="/register" element={<Register />}/>
           <Route path ="/games/create" element={<CreateGame />}/>
           <Route path ="/games/:gameId/edit" element={<GameEdit />}/>
-          <Route path ="/games/:gameId/details" element={<GamesDetails email={email} />}/>
+          <Route path ="/games/:gameId/details" element={<GamesDetails email={authData.email} />}/>
           <Route path ="/games" element={<Games />}/>
         </Routes>
         </main>

@@ -1,9 +1,9 @@
 
 import GameCatalog from './GameCatalogItem';
-import { useGmaes } from '../../api/gameApi';
+import { useGames } from '../../api/gameApi';
 
 export default function Games() {
-  const {games} = useGmaes();
+  const {games} = useGames();
 
     return (
         <section id="catalog-page">

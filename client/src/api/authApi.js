@@ -1,34 +1,32 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect,} from "react";
 import request from "../utils/request";
 import { UserContext } from "../contexts/UserContext";
 
 const baseUrl = 'http://localhost:3030/users';
 
-export  const useLogin = () => {
-const abortRef = useRef(new AbortController());
+export const useLogin = () => {
+    const login = async (email, password) => {
+        const abortController = new AbortController();  // ✅ Create a new controller for every request
 
-    const login = async(email, password) => {
-        const result = await request.post(`
-            ${baseUrl}/login`,
-             { email, password}, 
-             {signal: abortRef.current.signal}
+        try {
+            const result = await request.post(
+                `${baseUrl}/login`,
+                { email, password },
+                { signal: abortController.signal }
             );
-
-        return result;
-
-    }
-
-    useEffect(() =>{
-
-      const abortController = abortRef.current;
-
-      return ()=> abortController.abort();
-    }, []);
+            return result;
+        } catch (err) {
+            if (err.name === "AbortError") {
+                console.log("Login request was aborted.");
+            } else {
+                throw err; // Re-throw other errors
+            }
+        }
+    };
 
     return {
         login,
-    }
-
+    };
 };
 
 export const useRegister = () => {

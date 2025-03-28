@@ -1,5 +1,4 @@
 import {useNavigate} from 'react-router';
-import gameServise from "../../services/gameServise";
 import { useCreateGame } from '../../api/gameApi';
 
 export default function  CreateGame() {
